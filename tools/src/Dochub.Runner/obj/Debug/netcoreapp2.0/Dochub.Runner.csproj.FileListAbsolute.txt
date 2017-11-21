@@ -1,0 +1,11 @@
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\bin\Debug\netcoreapp2.0\Dochub.Runner.deps.json
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\bin\Debug\netcoreapp2.0\Dochub.Runner.runtimeconfig.json
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\bin\Debug\netcoreapp2.0\Dochub.Runner.runtimeconfig.dev.json
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\bin\Debug\netcoreapp2.0\Dochub.Runner.dll
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\obj\Debug\netcoreapp2.0\Dochub.Runner.csprojResolveAssemblyReference.cache
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\obj\Debug\netcoreapp2.0\Dochub.Runner.csproj.CoreCompileInputs.cache
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\obj\Debug\netcoreapp2.0\Dochub.Runner.AssemblyInfoInputs.cache
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\obj\Debug\netcoreapp2.0\Dochub.Runner.AssemblyInfo.cs
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\bin\Debug\netcoreapp2.0\Dochub.Runner.pdb
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\obj\Debug\netcoreapp2.0\Dochub.Runner.dll
+D:\Development\Repositories\dochub\tools\src\Dochub.Runner\obj\Debug\netcoreapp2.0\Dochub.Runner.pdb
