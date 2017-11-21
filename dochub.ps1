@@ -18,7 +18,7 @@ if($i -or $init)
 
     dotnet.exe build -c Release "tools\src\Dochub.Console"
 
-    dotnet.exe .\"tools\src\Dochub.Console\bin\Release\netcoreapp1.1\Dochub.Console.dll"
+    dotnet.exe .\"tools\src\Dochub.Console\bin\Release\netcoreapp2.0\Dochub.Console.dll"
 
     return
 }

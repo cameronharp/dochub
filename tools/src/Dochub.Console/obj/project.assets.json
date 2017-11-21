@@ -3574,11 +3574,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Development\\Repositories\\dochub\\tools\\src\\Dochub.Runner\\Dochub.Console.csproj",
+      "projectUniqueName": "D:\\Development\\Repositories\\dochub\\tools\\src\\Dochub.Console\\Dochub.Console.csproj",
       "projectName": "Dochub.Console",
-      "projectPath": "D:\\Development\\Repositories\\dochub\\tools\\src\\Dochub.Runner\\Dochub.Console.csproj",
+      "projectPath": "D:\\Development\\Repositories\\dochub\\tools\\src\\Dochub.Console\\Dochub.Console.csproj",
       "packagesPath": "C:\\Users\\camer\\.nuget\\packages\\",
-      "outputPath": "D:\\Development\\Repositories\\dochub\\tools\\src\\Dochub.Runner\\obj\\",
+      "outputPath": "D:\\Development\\Repositories\\dochub\\tools\\src\\Dochub.Console\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
