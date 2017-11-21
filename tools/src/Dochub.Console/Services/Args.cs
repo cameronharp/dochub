@@ -1,4 +1,5 @@
-﻿using Dochub.Console.Models;
+﻿using System.Linq;
+using Dochub.Console.Models;
 
 namespace Dochub.Console.Services
 {
@@ -29,7 +30,16 @@ namespace Dochub.Console.Services
 
         public static Commands GetCommands(string[] args)
         {
-            return null;
+            var commands = new Commands();
+
+            if (args == null || args.Length == 0)
+            {
+                return commands;
+            }
+
+            commands.Init = args.Contains("-i") || args.Contains("-init");
+
+            return commands;
         }
 
         #endregion

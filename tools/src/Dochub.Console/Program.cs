@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using Dochub.Console.Managers;
 using Dochub.Console.Models;
+using Dochub.Console.Services;
 using Newtonsoft.Json;
 
 namespace Dochub.Console
@@ -9,38 +11,15 @@ namespace Dochub.Console
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Hello World!");
+            var commands = Args.GetCommands(args);
 
-            return;
-
-            System.Console.WriteLine("Here!");
-
-            var config = JsonConvert.DeserializeObject<GlobalConfiguration>(File.ReadAllText("config.json"));
-
-            if (!Directory.Exists("_site"))
+            if (commands.Init)
             {
-                Directory.CreateDirectory("_site");
-            }
+                var manager = new InitializeManager();
 
-            if (!Directory.Exists("_site\\topics"))
-            {
-                Directory.CreateDirectory("_site\\topics");
-            }
+                manager.Init();
 
-            foreach (var topic in config?.Topics)
-            {
-                if (!Directory.Exists($"_site\\topics\\{topic}"))
-                {
-                    Directory.CreateDirectory($"_site\\topics\\{topic}");
-                    Directory.CreateDirectory($"_site\\topics\\{topic}\\articles");
-
-                    using (var sw = File.CreateText($"_site\\topics\\{topic}\\config.json"))
-                    {
-                        sw.WriteLine("{");
-
-                        sw.WriteLine("}");
-                    }
-                }
+                return;
             }
         }
     }
