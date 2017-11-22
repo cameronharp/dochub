@@ -14,7 +14,9 @@ namespace Dochub.Console.Managers
 
         private string _configFilePath { get; }
 
-        private string _siteFilePath { get; }
+        private string _siteFolderPath { get; }
+
+        private string _topicsFolderPath { get; }
 
         #endregion
 
@@ -28,20 +30,25 @@ namespace Dochub.Console.Managers
 
         public InitializeManager()
             : this ($"{Directory.GetCurrentDirectory()}/{FileName.Config}",
-                $"{Directory.GetCurrentDirectory()}/{FileName.Site}")
+                $"{Directory.GetCurrentDirectory()}/{FolderName.Site}",
+                $"{Directory.GetCurrentDirectory()}/{FolderName.Site}/{FolderName.Topics}")
         {
 
         }
 
-        public InitializeManager(string configFilePath, string siteFilePath)
+        public InitializeManager(string configFilePath, string siteFolderPath, string topicsFolderPath)
         {
             _configFilePath = !String.IsNullOrEmpty(configFilePath) 
                 ? configFilePath 
                 : throw new ArgumentNullException(nameof(configFilePath));
 
-            _siteFilePath = !String.IsNullOrEmpty(siteFilePath)
-                ? siteFilePath
-                : throw new ArgumentNullException(nameof(siteFilePath));
+            _siteFolderPath = !String.IsNullOrEmpty(siteFolderPath)
+                ? siteFolderPath
+                : throw new ArgumentNullException(nameof(siteFolderPath));
+
+            _topicsFolderPath = !String.IsNullOrEmpty(topicsFolderPath)
+                ? topicsFolderPath
+                : throw new ArgumentNullException(nameof(topicsFolderPath));
         }
 
         #endregion
@@ -54,31 +61,43 @@ namespace Dochub.Console.Managers
 
             var config = JsonConvert.DeserializeObject<GlobalConfiguration>(File.ReadAllText(_configFilePath));
 
-            if (!Directory.Exists(_siteFilePath))
+            if (!Directory.Exists(_siteFolderPath))
             {
-                Directory.CreateDirectory(_siteFilePath);
+                Directory.CreateDirectory(_siteFolderPath);
             }
 
-            //if (!Directory.Exists("_site\\topics"))
-            //{
-            //    Directory.CreateDirectory("_site\\topics");
-            //}
+            if (!Directory.Exists(_topicsFolderPath))
+            {
+                Directory.CreateDirectory(_topicsFolderPath);
+            }
 
-            //foreach (var topic in config?.Topics)
-            //{
-            //    if (!Directory.Exists($"_site\\topics\\{topic}"))
-            //    {
-            //        Directory.CreateDirectory($"_site\\topics\\{topic}");
-            //        Directory.CreateDirectory($"_site\\topics\\{topic}\\articles");
+            if (config.Topics != null)
+            {
+                foreach (var topic in config.Topics)
+                {
+                    var topicFolderPath = $"{_topicsFolderPath}\\{topic}";
+                    var articlesFolderPath = $"{topicFolderPath}\\articles";
 
-            //        using (var sw = File.CreateText($"_site\\topics\\{topic}\\config.json"))
-            //        {
-            //            sw.WriteLine("{");
+                    if (!Directory.Exists(topicFolderPath))
+                    {
+                        Directory.CreateDirectory(topicFolderPath);
 
-            //            sw.WriteLine("}");
-            //        }
-            //    }
-            //}
+                        createSingleTopicsArticlesFolder(articlesFolderPath);
+                    }
+                    else
+                    {
+                        createSingleTopicsArticlesFolder(articlesFolderPath);
+                    }
+                }
+            }
+        }
+
+        private void createSingleTopicsArticlesFolder(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
 
         #endregion

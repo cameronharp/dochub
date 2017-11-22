@@ -1,8 +1,10 @@
 {
+    "siteTitle": "Dochub Demo",
+    "landingPageHeader": "Dochub",
     "topics": [
-        "Product A",
-        "Product B",
-        "Product C",
-        "Product D"
+        "product one",
+        "product two",
+        "product three",
+        "product four"
     ]
 }

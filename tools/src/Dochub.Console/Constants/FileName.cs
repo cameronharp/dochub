@@ -6,8 +6,6 @@
 
         public const string Config = "config.json";
 
-        public const string Site = "_site";
-
         #endregion
     }
 }
