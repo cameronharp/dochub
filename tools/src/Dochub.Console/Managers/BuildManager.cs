@@ -112,6 +112,11 @@ namespace Dochub.Console.Managers
             {
                 var article = createStandAloneArticle(file);
 
+                if (article == null)
+                {
+                    continue;
+                }
+
                 articles.StandAloneArticles.Add(article);
             }
 
@@ -125,7 +130,7 @@ namespace Dochub.Console.Managers
                 articles.SubArticles.Add(new SubArticle
                 {
                     Name = subArticleInfo.Name,
-                    SubArticles = subArticleInfo.GetFiles().Select(m => createStandAloneArticle(m.FullName)).ToList()
+                    SubArticles = subArticleInfo.GetFiles().Where(r => r.Extension == ".md").Select(m => createStandAloneArticle(m.FullName)).ToList()
                 });
             }
 
@@ -139,6 +144,8 @@ namespace Dochub.Console.Managers
             if (!String.Equals(fileInfo.Extension, ".md"))
             {
                 System.Console.WriteLine(String.Format(Message.Warning.NotVaildArticleExtension, fileInfo.Name));
+
+                return null;
             }
 
             var article = new Article
