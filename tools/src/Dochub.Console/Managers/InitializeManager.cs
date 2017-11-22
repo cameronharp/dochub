@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Dynamic;
 using System.IO;
 using Dochub.Console.Constants;
 using Dochub.Console.Models;
@@ -12,11 +11,11 @@ namespace Dochub.Console.Managers
     {
         #region Fields
 
-        private string _configFilePath { get; }
+        private string UserConfigFilePath { get; }
 
-        private string _siteFolderPath { get; }
+        private string SiteFolderPath { get; }
 
-        private string _topicsFolderPath { get; }
+        private string TopicsFolderPath { get; }
 
         #endregion
 
@@ -29,24 +28,23 @@ namespace Dochub.Console.Managers
         #region Constructors
 
         public InitializeManager()
-            : this ($"{Directory.GetCurrentDirectory()}/{FileName.Config}",
+            : this ($"{Directory.GetCurrentDirectory()}/{FileName.UserConfig}",
                 $"{Directory.GetCurrentDirectory()}/{FolderName.Site}",
                 $"{Directory.GetCurrentDirectory()}/{FolderName.Site}/{FolderName.Topics}")
         {
-
         }
 
-        public InitializeManager(string configFilePath, string siteFolderPath, string topicsFolderPath)
+        public InitializeManager(string userConfigFilePath, string siteFolderPath, string topicsFolderPath)
         {
-            _configFilePath = !String.IsNullOrEmpty(configFilePath) 
-                ? configFilePath 
-                : throw new ArgumentNullException(nameof(configFilePath));
+            UserConfigFilePath = !String.IsNullOrEmpty(userConfigFilePath) 
+                ? userConfigFilePath 
+                : throw new ArgumentNullException(nameof(userConfigFilePath));
 
-            _siteFolderPath = !String.IsNullOrEmpty(siteFolderPath)
+            SiteFolderPath = !String.IsNullOrEmpty(siteFolderPath)
                 ? siteFolderPath
                 : throw new ArgumentNullException(nameof(siteFolderPath));
 
-            _topicsFolderPath = !String.IsNullOrEmpty(topicsFolderPath)
+            TopicsFolderPath = !String.IsNullOrEmpty(topicsFolderPath)
                 ? topicsFolderPath
                 : throw new ArgumentNullException(nameof(topicsFolderPath));
         }
@@ -57,26 +55,41 @@ namespace Dochub.Console.Managers
 
         public void Init()
         {
-            FileUtility.EnsureFile(_configFilePath);
+            FileUtility.EnsureFile(UserConfigFilePath);
 
-            var config = JsonConvert.DeserializeObject<GlobalConfiguration>(File.ReadAllText(_configFilePath));
+            var config = JsonConvert.DeserializeObject<UserConfiguration>(File.ReadAllText(UserConfigFilePath));
 
-            if (!Directory.Exists(_siteFolderPath))
+            ensureSiteFolder();
+
+            ensureTopicsFolder();
+
+            ensureTopicSubFolders(config);
+        }
+
+        private void ensureSiteFolder()
+        {
+            if (!Directory.Exists(SiteFolderPath))
             {
-                Directory.CreateDirectory(_siteFolderPath);
+                Directory.CreateDirectory(SiteFolderPath);
             }
+        }
 
-            if (!Directory.Exists(_topicsFolderPath))
+        private void ensureTopicsFolder()
+        {
+            if (!Directory.Exists(TopicsFolderPath))
             {
-                Directory.CreateDirectory(_topicsFolderPath);
+                Directory.CreateDirectory(TopicsFolderPath);
             }
+        }
 
+        private void ensureTopicSubFolders(UserConfiguration config)
+        {
             if (config.Topics != null)
             {
                 foreach (var topic in config.Topics)
                 {
-                    var topicFolderPath = $"{_topicsFolderPath}\\{topic}";
-                    var articlesFolderPath = $"{topicFolderPath}\\articles";
+                    var topicFolderPath = $"{TopicsFolderPath}\\{topic}";
+                    var articlesFolderPath = $"{topicFolderPath}\\{FolderName.Articles}";
 
                     if (!Directory.Exists(topicFolderPath))
                     {

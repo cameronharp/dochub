@@ -8,6 +8,8 @@
 
         public const string Topics = "topics";
 
+        public const string Articles = "articles";
+
         #endregion
     }
 }

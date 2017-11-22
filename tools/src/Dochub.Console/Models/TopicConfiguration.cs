@@ -6,7 +6,9 @@ namespace Dochub.Console.Models
     {
         #region Properties
 
-        public IList<TopicArticleSection> Articles { get; set; }
+        public string Name { get; set; }
+
+        public Articles Articles { get; set; }
 
         public IList<CodeRepository> CodeRepositories { get; set; }
 

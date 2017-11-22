@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Dochub.Console.Constants;
 using Dochub.Console.Models;
 
 namespace Dochub.Console.Services
@@ -37,7 +38,8 @@ namespace Dochub.Console.Services
                 return commands;
             }
 
-            commands.Init = args.Contains("-i") || args.Contains("-init");
+            commands.Init = args.Contains(InputArgs.InitShort) || args.Contains(InputArgs.InitLong);
+            commands.Build = args.Contains(InputArgs.BuildShort) || args.Contains(InputArgs.BuildLong);
 
             return commands;
         }

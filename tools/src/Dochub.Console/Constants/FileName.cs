@@ -4,7 +4,9 @@
     {
         #region Properties
 
-        public const string Config = "config.json";
+        public const string UserConfig = "config.json";
+
+        public const string BuildConfig = "config.js";
 
         #endregion
     }

@@ -2,13 +2,11 @@
 
 namespace Dochub.Console.Models
 {
-    public class TopicArticle
+    public class SubArticle : ArticleBase
     {
         #region Properties
 
-        public string DisplayName { get; set; }
-
-        public string FileName { get; set; }
+        public IList<Article> SubArticles { get; set; }
 
         #endregion
     }

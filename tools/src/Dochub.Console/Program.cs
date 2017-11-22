@@ -21,6 +21,15 @@ namespace Dochub.Console
 
                 return;
             }
+
+            if (commands.Build)
+            {
+                var manager = new BuildManager();
+
+                manager.Build();
+
+                return;
+            }
         }
     }
 }

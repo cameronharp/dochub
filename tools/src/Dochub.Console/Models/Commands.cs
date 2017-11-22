@@ -6,6 +6,8 @@
 
         public bool Init { get; set; }
 
+        public bool Build { get; set; }
+
         #endregion
     }
 }
